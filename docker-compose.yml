@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  minecraft:
+    image: itzg/minecraft-server
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      TYPE: PAPER
+      VERSION: "1.19.4"
+      OPS: "cog25,june2dg"
+      MEMORY: 4G
+    volumes:
+      - ./data-mc:/data/
+      - ./plugins:/data/plugins
+    restart: always
