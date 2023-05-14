@@ -27,5 +27,5 @@ jobs:
               shell: bash
               run: |-
                 cd .github/workflows
-                { echo -n 'mv ${{ secrets.DIR }}'; cat deploy.sh; } > deploy.sh
-                cat deploy.sh | ssh morgan
+                { echo -n 'mv ${{ secrets.DIR }}'; cat deploy.sh; } > deploy.ssh.sh
+                cat deploy.ssh.sh | ssh morgan
