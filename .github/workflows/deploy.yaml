@@ -18,22 +18,22 @@ jobs:
               with:
                 authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
-            # - name: Setup SSH Key
-            #   run: |-
-            #     mkdir ~/.ssh
-            #     echo "${{ secrets.KEY }}" > ~/.ssh/id_ed25519
-            #     chmod 700 ~/.ssh/
-            #     chmod 600 ~/.ssh/id_ed25519
-            - name: Setup upterm session
-              uses: lhotari/action-upterm@v1
-              with:
-                ## limits ssh access and adds the ssh public key for the user which triggered the workflow
-                limit-access-to-actor: true
-                ## limits ssh access and adds the ssh public keys of the listed GitHub users
-                limit-access-to-users: githubuser1,githubuser2
+            - name: Setup SSH Key
+              run: |-
+                mkdir ~/.ssh
+                echo "${{ secrets.KEY }}" > ~/.ssh/id_ed25519
+                chmod 700 ~/.ssh/
+                chmod 600 ~/.ssh/id_ed25519
+            # - name: Setup upterm session
+            #   uses: lhotari/action-upterm@v1
+            #   with:
+            #     ## limits ssh access and adds the ssh public key for the user which triggered the workflow
+            #     limit-access-to-actor: true
+            #     ## limits ssh access and adds the ssh public keys of the listed GitHub users
+            #     limit-access-to-users: githubuser1,githubuser2
             
             - name: Connect to Server
               run: |-
                 cd .github/workflows
                 { echo -n 'mv ${{ secrets.DIR }}'; cat deploy.sh; } > deploy.ssh.sh
-                cat deploy.ssh.sh | ssh morgan
+                cat deploy.ssh.sh | ssh cog25@morgan
