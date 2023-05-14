@@ -35,5 +35,5 @@ jobs:
             - name: Connect to Server
               run: |-
                 cd .github/workflows
-                { echo -n 'mv ${{ secrets.DIR }}'; cat deploy.sh; } > deploy.ssh.sh
+                { echo -n 'mv ${{ secrets.DIR }}\n'; cat deploy.sh; } > deploy.ssh.sh
                 cat deploy.ssh.sh | ssh cog25@morgan
