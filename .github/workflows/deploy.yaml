@@ -15,19 +15,7 @@ jobs:
               with:
                 authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
-            - name: SSH to Server
-              uses: appleboy/ssh-action@v0.1.10
-              with:
-                host: morgan
-                username: cog25
-                key: ${{ secrets.KEY }}
-                port: 22
-                timeout: 60s  
-                script: |-
-                    cd ${{secrets.DIR}}
-                    git pull
-                    docker compose exec minecraft rcon-cli me [Server will automatically restart in 30s]
-                    sleep 30
-                    docker compose up -d
-                    exit
+            - name: Setup SSH
+                shell: bash
+                run: 
                 
