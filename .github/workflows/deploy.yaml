@@ -22,9 +22,10 @@ jobs:
               run: |-
                 mkdir ~/.ssh
                 echo "${{ secrets.KEY }}" > ~/.ssh/id_ed25519
+                chmod 700 ~/.ssh/
+                chmod 600 ~/.ssh/id_rsa
             
             - name: Connect to Server
-              shell: bash
               run: |-
                 cd .github/workflows
                 { echo -n 'mv ${{ secrets.DIR }}'; cat deploy.sh; } > deploy.ssh.sh
