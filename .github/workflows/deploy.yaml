@@ -2,9 +2,10 @@ name: "Deploy to Server"
 
 on:
     workflow_dispatch:
-    # push:
-    #     branches: 
-    #         - main
+    workflow_call:
+    push:
+        branches: 
+            - main
 jobs: 
     deploy:
         runs-on: ubuntu-22.04
@@ -19,9 +20,9 @@ jobs:
               with:
                 host: morgan
                 username: cog25
-                password: ${{ secrets.PASSWORD }}
                 key: ${{ secrets.KEY }}
                 port: 22
+                timeout: 60s  
                 script: |-
                     cd ${{secrets.DIR}}
                     git pull
@@ -30,4 +31,3 @@ jobs:
                     docker compose up -d
                     exit
                 
-                    
