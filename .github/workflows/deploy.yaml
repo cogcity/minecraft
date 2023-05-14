@@ -16,7 +16,6 @@ jobs:
                 authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
             - name: Setup SSH Key
-              shell: bash
               run: |-
                 mkdir ~/.ssh
                 echo "${{ secrets.KEY }}" > ~/.ssh/id_ed25519
