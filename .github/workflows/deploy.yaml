@@ -10,12 +10,24 @@ jobs:
     deploy:
         runs-on: ubuntu-22.04
         steps:
-            - name: Tailscale
+            - name: Setup Tailscale
               uses: tailscale/github-action@v1
               with:
                 authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
-            - name: Setup SSH
-                shell: bash
-                run: 
+            - name: Setup SSH Key
+              shell: bash
+              run: echo "${{ secrets.KEY }}" > ~/.ssh/id_ed25519
+            
+            - name: Connect to Server
+              shell: bash
+              run: |-
+                ssh myserver <<\EOF
                 
+                cd ${{ secrets.DIR }}
+                git pull
+                docker compose exec minecraft rcon-cli me [Server will automatically restart in 30s]
+                sleep 30
+                docker compose up -d
+                
+                EOF
