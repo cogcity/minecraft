@@ -10,6 +10,9 @@ jobs:
     deploy:
         runs-on: ubuntu-22.04
         steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+              
             - name: Setup Tailscale
               uses: tailscale/github-action@v1
               with:
@@ -23,12 +26,5 @@ jobs:
             - name: Connect to Server
               shell: bash
               run: |-
-                ssh morgan <<\EOF
-                11
-                cd ${{ secrets.DIR }}
-                git pull
-                docker compose exec minecraft rcon-cli me [Server will automatically restart in 30s]
-                sleep 30
-                docker compose up -d
-                
-                EOF
+                cd .github/workflows
+                cat deploy.sh | ssh morgan

@@ -9,7 +9,7 @@ services:
       EULA: "TRUE"
       TYPE: PAPER
       VERSION: "1.19.4"
-      OPS: "cog25,june2dg"
+      OPS: "cog25,june7dgh"
       MEMORY: 4G
     volumes:
       - ./data-mc:/data/
