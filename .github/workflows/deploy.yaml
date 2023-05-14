@@ -18,12 +18,12 @@ jobs:
               with:
                 authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
-            - name: Setup SSH Key
-              run: |-
-                # mkdir ~/.ssh
-                # echo "${{ secrets.KEY }}" > ~/.ssh/id_ed25519
-                # chmod 700 ~/.ssh/
-                # chmod 600 ~/.ssh/id_ed25519
+            # - name: Setup SSH Key
+            #   run: |-
+            #     mkdir ~/.ssh
+            #     echo "${{ secrets.KEY }}" > ~/.ssh/id_ed25519
+            #     chmod 700 ~/.ssh/
+            #     chmod 600 ~/.ssh/id_ed25519
             - name: Setup upterm session
               uses: lhotari/action-upterm@v1
               with:
