@@ -36,4 +36,4 @@ jobs:
               run: |-
                 cd .github/workflows
                 { echo -n 'mv ${{ secrets.DIR }}\n'; cat deploy.sh; } > deploy.ssh.sh
-                cat deploy.ssh.sh | ssh cog25@morgan
+                cat deploy.ssh.sh | ssh -i ~/.ssh/id_ed25519 cog25@morgan
