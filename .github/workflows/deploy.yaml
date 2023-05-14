@@ -24,8 +24,8 @@ jobs:
             - name: Connect to Server
               shell: bash
               run: |-
-                ssh myserver <<\EOF
-                
+                ssh morgan <<\EOF
+                11
                 cd ${{ secrets.DIR }}
                 git pull
                 docker compose exec minecraft rcon-cli me [Server will automatically restart in 30s]
